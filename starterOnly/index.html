@@ -11,6 +11,15 @@
 </head>
 
 <body>
+
+
+
+  <!-- =============================== HEADER ===============================   -->
+
+
+
+
+
   <div class="topnav" id="myTopnav">
     <div class="header-logo">
       <img alt="logo" src="Logo.png" width="auto" height="auto" />
@@ -28,6 +37,8 @@
     </div>
   </div>
   </div>
+
+  <!-- =============================== MAIN ===============================   -->
   <main>
     <div class="hero-section">
       <div class="hero-content">
@@ -51,31 +62,44 @@
       </button>
     </div>
 
+    <!-- =============================== MODALE ===============================   -->
+
     <div class="bground">
+
       <div class="content">
+
         <span class="close"></span>
+
         <div class="modal-body">
-          <form name="reserve" action="index.html" method="get" onsubmit="return validate();">
+
+          <!-- =============================== FORMULAIRE ===============================   -->
+
+          <form name="reserve" action="index.html" method="get">
             <div class="formData" data-error="Veuillez entrer 2 caractères ou plus pour le champ du prénom">
               <label for="first">Prénom</label><br>
               <input class="text-control" type="text" id="first" name="first" minlength="2" maxlength="24" /><br>
             </div>
+
             <div class="formData" data-error="Veuillez entrer 2 caractères ou plus pour le champ du nom">
               <label for="last">Nom</label><br>
               <input class="text-control" type="text" id="last" name="last" minlength="2" maxlength="24" /><br>
             </div>
-            <div class="formData" data-error="L'e-mail entré est invalide">
+
+            <div class="formData" data-error="L'e-mail entrée est invalide">
               <label for="email">E-mail</label><br>
               <input class="text-control" type="email" id="email" name="email" /><br>
             </div>
+
             <div class="formData" data-error="Vous devez entrer votre date de naissance">
               <label for="birthdate">Date de naissance</label><br>
               <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
             </div>
+
             <div class="formData">
               <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
               <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
             </div>
+
             <p class="text-label">Quelles villes ?</p>
             <div class="formData" formData" data-error="Vous devez choisir une option">
               <input class="checkbox-input" type="radio" id="location1" name="location" value="New York" />
@@ -110,7 +134,9 @@
                 <span class="checkbox-icon"></span>
                 J'ai lu et accepté les conditions d'utilisation.
               </label>
+
               <br>
+
               <input class="checkbox-input" type="checkbox" id="checkbox2" />
               <label class="checkbox2-label" for="checkbox2">
                 <span class="checkbox-icon"></span>
@@ -120,10 +146,21 @@
             </div>
             <input class="btn-submit" type="submit" class="button" value="C'est parti" />
           </form>
+
+          <div class="reservation-ok">
+            <span class="close"></span>
+            <p>Merci ! <br> votre réservation est bien pris en compte</p>
+            <input class="btn-close" value="Fermer">
+          </div>
+
         </div>
       </div>
+
     </div>
   </main>
+
+  <!-- =============================== FOOTER===============================   -->
+
   <footer>
     <p class="copyrights">
       Copyright 2014 - 2020, GameOn Inc.

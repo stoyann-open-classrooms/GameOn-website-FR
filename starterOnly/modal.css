@@ -102,7 +102,7 @@ img {
 } 
 
 main {
-  font-size: 130%;
+   font-size: 130%; 
   font-weight: bolder;
   color: black;
   padding-top: 0.5vw;
@@ -277,10 +277,10 @@ input[data-error]::after {
   opacity: 1;
 }
 .checkbox-input:checked + .checkbox2-label .checkbox-icon {
-  background: #279e7a;
+  background: #279e7a; 
 }
 .checkbox2-label .checkbox-icon {
-  border-radius: 4px;
+  border-radius: 4px; 
   border: 0;
   background: #c4c4c4;
 }
@@ -347,6 +347,47 @@ input[data-error]::after {
 .select-selected {
   background-color: #fff;
 }
+
+/* ======== Conf. message ======== */
+
+.reservation-ok {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  padding: 250px 0 50px 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #232323;
+}
+
+.reservation-ok p {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.btn-close {
+  display: block;
+  padding: 12px 0;
+  text-align: center;
+	margin: 0 auto;
+	border-radius: 7px;
+	font-size: 1.3rem;
+  background: #fe142f;
+	color: #fff;
+	cursor: pointer;
+	border: 0;
+}
+
+.btn-close:hover {
+  background-color:#3876ac;
+}
+
+
+
 
 /* Style the arrow inside the select element: */
 .select-selected:after {
