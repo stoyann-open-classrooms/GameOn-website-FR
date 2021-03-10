@@ -31,7 +31,7 @@
       <a href="#"><span>À propos</span></a>
       <a href="#"><span>Contact</span></a>
       <a href="#"><span>Évènements passés</span></a>
-      <a href="javascript:void(0);" class="icon" onclick="editNav()">
+      <a href="#" class="icon">
         <i class="fa fa-bars"></i>
       </a>
     </div>
@@ -74,34 +74,46 @@
 
           <!-- =============================== FORMULAIRE ===============================   -->
 
-          <form name="reserve" action="index.html" method="get">
-            <div class="formData" data-error="Veuillez entrer 2 caractères ou plus pour le champ du prénom">
+          <form name="reserve" action="index.html" method="get" id="formulaire">
+            <div class="formData" data-error="Vous devez entrer votre date de naissance">
               <label for="first">Prénom</label><br>
               <input class="text-control" type="text" id="first" name="first" minlength="2" maxlength="24" /><br>
+              <span class="message-alerte">Veuillez entrer 2 caractères ou plus pour le champ du nom.</span>
+
             </div>
 
-            <div class="formData" data-error="Veuillez entrer 2 caractères ou plus pour le champ du nom">
+            <div class="formData">
               <label for="last">Nom</label><br>
-              <input class="text-control" type="text" id="last" name="last" minlength="2" maxlength="24" /><br>
+              <input class="text-control" type="text" id="last" name="last" maxlength="24" /><br>
+              <span class="message-alerte">Veuillez entrer 2 caractères ou plus pour le champ du nom.</span>
+
+
+
             </div>
 
-            <div class="formData" data-error="L'e-mail entrée est invalide">
+            <div class="formData">
               <label for="email">E-mail</label><br>
               <input class="text-control" type="email" id="email" name="email" /><br>
+              <span class="message-alerte">Le mail entrée est invalide.</span>
+
             </div>
 
             <div class="formData" data-error="Vous devez entrer votre date de naissance">
               <label for="birthdate">Date de naissance</label><br>
               <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
+              <span class="message-alerte">Vous devez entrer votre date de naissance.</span>
+
             </div>
 
             <div class="formData">
               <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
               <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+              <span class="message-alerte">"Vous devez entrer un chiffre.</span>
+
             </div>
 
             <p class="text-label">Quelles villes ?</p>
-            <div class="formData" formData" data-error="Vous devez choisir une option">
+            <div class="formData">
               <input class="checkbox-input" type="radio" id="location1" name="location" value="New York" />
               <label class="checkbox-label" for="location1">
                 <span class="checkbox-icon"></span>
@@ -125,7 +137,10 @@
               <input class="checkbox-input" type="radio" id="location6" name="location" value="Portland" />
               <label class="checkbox-label" for="location6">
                 <span class="checkbox-icon"></span>
-                Portland</label>
+                Portland</label> <br>
+
+              <span class="message-alerte">Vous devez choisir une option.</span>
+
             </div>
 
             <div class="formData">
@@ -133,7 +148,9 @@
               <label class="checkbox2-label" for="checkbox1" required>
                 <span class="checkbox-icon"></span>
                 J'ai lu et accepté les conditions d'utilisation.
-              </label>
+              </label> <br>
+              <span class="message-alerte">Vous devez accepter les conditions d'utilisation.</span>
+
 
               <br>
 
