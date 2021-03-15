@@ -234,9 +234,10 @@ input[data-error]::after {
   
 } 
 .message-alerte{
-  font-size: 0.4em;
+  font-size: 0.6em;
   color: red;
   display: none;
+  margin-top: 2px;
 
 }
 .checkbox-label,
