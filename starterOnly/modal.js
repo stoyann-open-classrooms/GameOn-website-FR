@@ -53,9 +53,13 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // click : close modal
 closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
-const validForm = false;
+let validForm = false;
 
 // fonction verfification des inputs
+ 
+
+
+
 
 function verifInputs() {
   let verifName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
@@ -64,14 +68,14 @@ function verifInputs() {
 
   if (verifName.exec(first.value) === null || first.length < 2) {
     errorAlert[0].style.display = "block";
-    validForm === false;
+    return validForm = false;
   } else {
     errorAlert[0].style.display = "none";
   }
 
   if (verifName.exec(last.value) === null || last.length < 2) {
     errorAlert[1].style.display = "block";
-    return validForm === false;
+    return validForm = false;
   } else {
     errorAlert[1].style.display = "none";
   }
@@ -82,7 +86,7 @@ function verifInputs() {
 
   if (regexMail.exec(email.value) === null) {
     errorAlert[2].style.display = "block";
-    return validForm === false;
+    return validForm = false;
   } else {
     errorAlert[2].style.display = "none";
   }
@@ -93,7 +97,7 @@ function verifInputs() {
 
   if (regexDate.exec(birthdate.value) === null || !birthdate.value) {
     errorAlert[3].style.display = "block";
-    validForm === false;
+    return validForm = false;
   } else {
     errorAlert[3].style.display = "none";
   }
@@ -102,27 +106,30 @@ function verifInputs() {
 
   if (!quantity.value || isNaN(quantity.value)) {
     errorAlert[4].style.display = "block";
-    validForm === false;
+    return validForm = false;
   } else {
     errorAlert[4].style.display = "none";
   }
 
+  
+  
   // verifier si au moins une case est cocher
 
-  if ( !city.value || city == ""
-    ) {
-      errorAlert[5].style.display = "block";
-      validForm === false;
-      console.log(city);
-    } else {
-      errorAlert[5].style.display = "none";
-      console.log(city);
-  }
+ // if ( !city.value || city == ""
+    // ) {
+      // errorAlert[5].style.display = "block";
+      // validForm === false;
+      // console.log(city);
+    // } else {
+      // errorAlert[5].style.display = "none";
+      // console.log(city);
+  // }
 
+ 
   
   if (!conditions.checked) {
     errorAlert[6].style.display = "block";
-    validForm === false;
+    return validForm = false;
   } else {
     errorAlert[6].style.display = "none";
    }
@@ -135,17 +142,17 @@ function isValid(event) {
 
   verifInputs();
   
-  if (validForm === true) {
+  if (validForm == true) {
 
    
 
    
-    // form.style.display="none";
+    
     validationOk.style.display = "flex";
-    console.log(form.input);
-  } else {
-    return false;
+    
   }
+   
+  
 }
 
 formulaire.addEventListener("submit", isValid);
