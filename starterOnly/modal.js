@@ -15,7 +15,6 @@ const birthdate = document.querySelector("#birthdate");
 const quantity = document.querySelector("#quantity");
 const conditions = document.querySelector("#checkbox1");
 const city = document.querySelectorAll(".checkbox-label");
-
 // recuperation de la date du jour
 const todayDate = new Date().toISOString().split("T")[0];
 
@@ -54,7 +53,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // click : close modal
 closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
-let validForm = false;
+const validForm = false;
 
 // fonction verfification des inputs
 
@@ -110,38 +109,40 @@ function verifInputs() {
 
   // verifier si au moins une case est cocher
 
-  if (
-    !city[0].checked &&
-    !city[1].checked &&
-    !city[2].checked &&
-    !city[3].checked &&
-    !city[4].checked &&
-    !city[5].checked
-  ) {
-    errorAlert[5].style.display = "block";
-    validForm === false;
-  } else {
-    errorAlert[5].style.display = "none";
+  if ( !city.value || city == ""
+    ) {
+      errorAlert[5].style.display = "block";
+      validForm === false;
+      console.log(city);
+    } else {
+      errorAlert[5].style.display = "none";
+      console.log(city);
   }
 
-  if (!conditions.value) {
+  
+  if (!conditions.checked) {
     errorAlert[6].style.display = "block";
     validForm === false;
   } else {
     errorAlert[6].style.display = "none";
-  }
+   }
 
-  validForm === true;
+  validForm = true;
 }
 
 function isValid(event) {
   event.preventDefault();
 
   verifInputs();
-
+  
   if (validForm === true) {
+
+   
+
+   
     // form.style.display="none";
     validationOk.style.display = "flex";
+    console.log(form.input);
   } else {
     return false;
   }

@@ -231,8 +231,8 @@ input[data-error]::after {
     content: attr(data-error);
     font-size: 0.4em;  
     color: red;
-  
 } 
+
 .message-alerte{
   font-size: 0.6em;
   color: red;
