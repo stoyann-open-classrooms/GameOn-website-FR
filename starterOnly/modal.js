@@ -1,15 +1,31 @@
-
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const form = document.querySelector("#formulaire");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const validationOk = document.querySelector('.reservation-ok');
-const close = document.querySelector (".close");
+const validationOk = document.querySelector(".reservation-ok");
+const close = document.querySelector(".close");
 const closeBtn = document.querySelectorAll(".close, .btn-close");
-const errorAlert = document.querySelectorAll(".message-alerte")
+const errorAlert = document.querySelectorAll(".message-alerte");
 const iconeBurger = document.querySelector(".icon");
-const anneeDeNaissance = document.querySelector("#birthdate")
 
+const first = document.querySelector("#first");
+const last = document.querySelector("#last");
+const email = document.querySelector("#email");
+const birthdate = document.querySelector("#birthdate");
+const quantity = document.querySelector("#quantity");
+const conditions = document.querySelector("#checkbox1");
+const city = document.querySelectorAll(".checkbox-label");
+
+// recuperation de la date du jour
+const todayDate = new Date().toISOString().split("T")[0];
+
+// impossible de mettre une date dans le futur
+form.birthdate.max = todayDate;
+
+// recuperation de l'annee
+const currentYear = new Date().getFullYear();
+
+//  navigation
 
 function editNav() {
   var x = document.getElementById("myTopnav");
@@ -19,27 +35,18 @@ function editNav() {
     x.className = "topnav";
   }
 }
+// animation naviguation
+iconeBurger.addEventListener("click", editNav);
 
-
-// launch modal form
+// function  launch & close modal  form
 function launchModal() {
   modalbg.style.display = "block";
-
-};
-
+}
 
 function closeModal() {
   modalbg.style.display = "none";
+}
 
-};
-
-
-
-
-
-
-// animation naviguation
-iconeBurger.addEventListener ("click", editNav );
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -47,119 +54,97 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // click : close modal
 closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
+let validForm = false;
 
+// fonction verfification des inputs
 
+function verifInputs() {
+  let verifName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
 
+  // verification du nom et prenom
 
-
-
-
-function verifFirst() {
- 
-  if (form.first.value === "" || form.first.length < 2){
-  
+  if (verifName.exec(first.value) === null || first.length < 2) {
     errorAlert[0].style.display = "block";
-    
-    return false;
-  
-  } else { 
+    validForm === false;
+  } else {
     errorAlert[0].style.display = "none";
-    return  true
   }
 
-}
-
-
-
-function verifLast() {
-
-  if (form.last.value === "" || form.last.value < 2) {
-  
-    errorAlert[1].style.display = "inline";
-   
-    return false;
-  
+  if (verifName.exec(last.value) === null || last.length < 2) {
+    errorAlert[1].style.display = "block";
+    return validForm === false;
   } else {
     errorAlert[1].style.display = "none";
-    return true
-
   }
-}
 
+  // verification du Mail
 
-
-function verifMAil() {
-
-
-  // verification email
-  
   let regexMail = /^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i;
-  
-  if(regexMail.exec(form.email.value) === null) {
-    
-    errorAlert[2].style.display = "block"; 
-    
-    return false;
-    
+
+  if (regexMail.exec(email.value) === null) {
+    errorAlert[2].style.display = "block";
+    return validForm === false;
   } else {
-    
     errorAlert[2].style.display = "none";
-    return true
-    
-    
   }
-  
-}
 
+  //  verification de la date
 
-// verification de la date
+  let regexDate = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
 
- 
-// recuperation de la date du jour
-const todayDate = new Date().toISOString().split('T')[0];
-// recuperation de l'annee 
-const currentYear = new Date().getFullYear();
-// impossible de mettre une date dans le futur
-form.birthdate.max = todayDate;
-
-
-
-
-function verifTournament(alert) {
-
-
-  let inputTournament = document.querySelector("#quantity");
-  
-  if( inputTournament.value == "") {
-    
-    errorAlert[4].style.display = "block"; 
-    return false;
-    
+  if (regexDate.exec(birthdate.value) === null || !birthdate.value) {
+    errorAlert[3].style.display = "block";
+    validForm === false;
   } else {
-    
-    errorAlert[4].style.display = "none";
-    return true
+    errorAlert[3].style.display = "none";
   }
-  
+
+  // verification quantité
+
+  if (!quantity.value || isNaN(quantity.value)) {
+    errorAlert[4].style.display = "block";
+    validForm === false;
+  } else {
+    errorAlert[4].style.display = "none";
+  }
+
+  // verifier si au moins une case est cocher
+
+  if (
+    !city[0].checked &&
+    !city[1].checked &&
+    !city[2].checked &&
+    !city[3].checked &&
+    !city[4].checked &&
+    !city[5].checked
+  ) {
+    errorAlert[5].style.display = "block";
+    validForm === false;
+  } else {
+    errorAlert[5].style.display = "none";
+  }
+
+  if (!conditions.value) {
+    errorAlert[6].style.display = "block";
+    validForm === false;
+  } else {
+    errorAlert[6].style.display = "none";
+  }
+
+  validForm === true;
 }
 
+function isValid(event) {
+  event.preventDefault();
 
+  verifInputs();
 
+  if (validForm === true) {
+    // form.style.display="none";
+    validationOk.style.display = "flex";
+  } else {
+    return false;
+  }
+}
 
-
- let tournamentBool = verifTournament();
- let firstbool= verifFirst();
-let lastBool = verifLast();
- let mailBool = verifMAil();
-
-
-formulaire.addEventListener('submit' , (e) => {
-
-  e.preventDefault();
-
-
-validationOk.style.display="flex";
-
-
- });
-
+formulaire.addEventListener("submit", isValid);
