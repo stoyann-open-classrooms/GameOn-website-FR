@@ -17,7 +17,7 @@ const conditions = document.querySelector("#checkbox1");
 const city = document.querySelectorAll(".checkbox-label");
 // recuperation de la date du jour
 const todayDate = new Date().toISOString().split("T")[0];
-
+let tabValue = [];
 // impossible de mettre une date dans le futur
 form.birthdate.max = todayDate;
 
@@ -71,6 +71,7 @@ function verifInputs() {
     return validForm = false;
   } else {
     errorAlert[0].style.display = "none";
+    tabValue.push(first.value);
   }
 
   if (verifName.exec(last.value) === null || last.length < 2) {
@@ -78,6 +79,8 @@ function verifInputs() {
     return validForm = false;
   } else {
     errorAlert[1].style.display = "none";
+    tabValue.push(last.value);
+
   }
 
   // verification du Mail
@@ -89,6 +92,8 @@ function verifInputs() {
     return validForm = false;
   } else {
     errorAlert[2].style.display = "none";
+    tabValue.push(email.value);
+
   }
 
   //  verification de la date
@@ -100,6 +105,8 @@ function verifInputs() {
     return validForm = false;
   } else {
     errorAlert[3].style.display = "none";
+    tabValue.push(birthdate.value);
+
   }
 
   // verification quantité
@@ -109,6 +116,8 @@ function verifInputs() {
     return validForm = false;
   } else {
     errorAlert[4].style.display = "none";
+    tabValue.push(quantity.value);
+
   }
 
   
@@ -145,7 +154,9 @@ function isValid(event) {
   if (validForm == true) {
 
    
-
+      
+    
+    console.log(tabValue);
    
     
     validationOk.style.display = "flex";
