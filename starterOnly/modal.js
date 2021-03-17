@@ -7,7 +7,7 @@ const close = document.querySelector(".close");
 const closeBtn = document.querySelectorAll(".close, .btn-close");
 const errorAlert = document.querySelectorAll(".message-alerte");
 const iconeBurger = document.querySelector(".icon");
-
+const formData = document.querySelectorAll(".form-data");
 const first = document.querySelector("#first");
 const last = document.querySelector("#last");
 const email = document.querySelector("#email");
@@ -21,8 +21,8 @@ let tabValue = [];
 // impossible de mettre une date dans le futur
 form.birthdate.max = todayDate;
 
-// recuperation de l'annee
-const currentYear = new Date().getFullYear();
+
+
 
 //  navigation
 
@@ -53,117 +53,175 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // click : close modal
 closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
-let validForm = false;
+let validFirst = false;
+let validLast = false;
+let validMail = false;
+let validDate = false;
+let validQuantity = false;
+let validCity = false;
+let validConditions = false;
+let verifAge = false;
 
-// fonction verfification des inputs
- 
+// fonctions verfification des inputs
 
-
-
-
-function verifInputs() {
-  let verifName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
-
-  // verification du nom et prenom
-
-  if (verifName.exec(first.value) === null || first.length < 2) {
+function verifFirst() {
+  let regexFirst = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
+  if (regexFirst.exec(first.value) === null || first.length < 2) {
     errorAlert[0].style.display = "block";
-    return validForm = false;
+    first.classList.add("echec");
+    setTimeout(() => {
+      first.classList.remove("echec");
+    }, 500);
+    return (validFirst = false);
   } else {
     errorAlert[0].style.display = "none";
     tabValue.push(first.value);
+    return (validFirst = true);
   }
+}
 
-  if (verifName.exec(last.value) === null || last.length < 2) {
+function verifLast() {
+  let regexLast = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
+  if (regexLast.exec(last.value) === null || last.length < 2) {
     errorAlert[1].style.display = "block";
-    return validForm = false;
+    last.classList.add("echec");
+    setTimeout(() => {
+      last.classList.remove("echec");
+    }, 500);
+
+    return (validLast = false);
   } else {
     errorAlert[1].style.display = "none";
     tabValue.push(last.value);
-
+    return (validLast = false);
   }
+}
 
-  // verification du Mail
-
+function verifMail() {
   let regexMail = /^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i;
-
   if (regexMail.exec(email.value) === null) {
     errorAlert[2].style.display = "block";
-    return validForm = false;
+    email.classList.add("echec");
+    setTimeout(() => {
+      email.classList.remove("echec");
+    }, 500);
+
+    return (validMail = false);
   } else {
     errorAlert[2].style.display = "none";
     tabValue.push(email.value);
-
+    return (validMail = true);
   }
+}
 
-  //  verification de la date
-
+function verifDate() {
   let regexDate = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
-
   if (regexDate.exec(birthdate.value) === null || !birthdate.value) {
     errorAlert[3].style.display = "block";
-    return validForm = false;
+    birthdate.classList.add("echec");
+    setTimeout(() => {
+      birthdate.classList.remove("echec");
+    }, 500);
+    return (validDate = false);
   } else {
     errorAlert[3].style.display = "none";
     tabValue.push(birthdate.value);
-
+    return (validDate = true);
   }
+}
 
-  // verification quantité
+// verifie que l'utilisateur est majeur
 
+
+function AgeVerif (){
+  // recuperation de l'annee
+const currentYear = new Date().getFullYear();
+const userYear = birthdate.value.split("-")[0];
+if (userYear > currentYear - 18){
+    errorAlert[3].style.display = "block";
+    birthdate.classList.add("echec");
+    setTimeout(() => {
+      birthdate.classList.remove("echec");
+    }, 500);
+    return (validDate = false);
+  } else {
+    errorAlert[3].style.display = "none";
+    tabValue.push(birthdate.value);
+    return (validDate = true);
+  }
+ }
+
+
+
+
+function quantityVerif() {
   if (!quantity.value || isNaN(quantity.value)) {
     errorAlert[4].style.display = "block";
-    return validForm = false;
+    quantity.classList.add("echec");
+    setTimeout(() => {
+      quantity.classList.remove("echec");
+    }, 500);
+    return (validQuantity = false);
   } else {
     errorAlert[4].style.display = "none";
     tabValue.push(quantity.value);
-
+    return (validQuantity = true);
   }
+}
 
-  
-  
-  // verifier si au moins une case est cocher
+function cityVerif() {
+  city.forEach(function (element) {
+    if (!element.checked) {
+      errorAlert[5].style.display = "block";
+      validCity = false;
+    } else if (element.checked) {
+      errorAlert[5].style.display = "none";
+      tabValue.push(element.value);
+      validCity = true;
+    } else {
+      validCity = false;
+    }
+  });
+}
 
- // if ( !city.value || city == ""
-    // ) {
-      // errorAlert[5].style.display = "block";
-      // validForm === false;
-      // console.log(city);
-    // } else {
-      // errorAlert[5].style.display = "none";
-      // console.log(city);
-  // }
-
- 
-  
+function verifConditions() {
   if (!conditions.checked) {
     errorAlert[6].style.display = "block";
-    return validForm = false;
+
+    return (validConditions = false);
   } else {
     errorAlert[6].style.display = "none";
-   }
-
-  validForm = true;
+    return (validConditions = true);
+  }
 }
+
+
+// fonction verification si formulaire valide
+
 
 function isValid(event) {
   event.preventDefault();
 
-  verifInputs();
-  
-  if (validForm == true) {
+  verifFirst();
+  verifLast();
+  verifMail();
+  verifDate();
+  quantityVerif();
+  cityVerif();
+  verifConditions();
+  AgeVerif();
 
-   
-      
-    
+  if (
+    validFirst === true &&
+    validMail === true &&
+    validDate === true &&
+    validQuantity === true &&
+    validCity === true &&
+    validConditions === true
+  ) {
     console.log(tabValue);
-   
-    
     validationOk.style.display = "flex";
-    
   }
-   
-  
 }
 
 formulaire.addEventListener("submit", isValid);
