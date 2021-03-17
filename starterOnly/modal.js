@@ -18,14 +18,10 @@ const conditions = document.querySelector("#checkbox1");
 const citys = document.querySelectorAll(".checkbox-input");
 let tabValue = [];
 
-
 // recuperation de la date du jour
 const todayDate = new Date().toISOString().split("T")[0];
 // impossible de mettre une date dans le futur
 form.birthdate.max = todayDate;
-
-
-
 
 //  navigation
 
@@ -68,11 +64,8 @@ let validAge = false;
 // fonctions verfification des inputs
 
 function verifFirst() {
-  
-  
-  let regexFirst =  /^[a-zA-ZÀ-Ÿà-ÿ-\s]+$/; //uniquement des lettres majuscules ou minuscules les tirets et les espaces
+  let regexFirst = /^[a-zA-ZÀ-Ÿà-ÿ-\s]+$/; //uniquement des lettres majuscules ou minuscules les tirets et les espaces
   if (regexFirst.exec(first.value) === null || first.length < 2) {
-
     errorAlert[0].style.display = "block";
     first.classList.add("echec");
     first.classList.add("border");
@@ -91,7 +84,7 @@ function verifFirst() {
 }
 
 function verifLast() {
-  let regexLast =  /^[a-zA-ZÀ-Ÿà-ÿ-\s]+$/;
+  let regexLast = /^[a-zA-ZÀ-Ÿà-ÿ-\s]+$/;
   if (regexLast.exec(last.value) === null || last.length < 2) {
     errorAlert[1].style.display = "block";
     last.classList.add("echec");
@@ -136,11 +129,13 @@ function verifDate() {
   let regexDate = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
   const currentYear = new Date().getFullYear();
   const userYear = birthdate.value.split("-")[0];
-  if (regexDate.exec(birthdate.value) === null || !birthdate.value|| userYear > currentYear - 18) {
-    
+  if (
+    regexDate.exec(birthdate.value) === null ||
+    !birthdate.value ||
+    userYear > currentYear - 18
+  ) {
     errorAlert[3].style.display = "block";
     birthdate.classList.add("border");
-    
 
     birthdate.classList.add("echec");
     setTimeout(() => {
@@ -156,13 +151,8 @@ function verifDate() {
   }
 }
 
-
-
-
-
 function quantityVerif() {
   if (!quantity.value || isNaN(quantity.value)) {
-   
     errorAlert[4].style.display = "block";
     quantity.classList.add("border");
 
@@ -180,36 +170,24 @@ function quantityVerif() {
   }
 }
 
-
-
-
 function verifCity() {
-
-  if(!(citys[0].checked || citys[1].checked || citys[2].checked || citys[3].checked || citys[4].checked || citys[5].checked)) { 
-
+  if (
+    !(
+      citys[0].checked ||
+      citys[1].checked ||
+      citys[2].checked ||
+      citys[3].checked ||
+      citys[4].checked ||
+      citys[5].checked
+    )
+  ) {
     errorAlert[5].style.display = "block";
     return (validCity = false);
-    
   } else {
-    
     errorAlert[5].style.display = "none";
     return (validCity = true);
-
   }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
 
 function verifConditions() {
   if (!conditions.checked) {
@@ -222,9 +200,7 @@ function verifConditions() {
   }
 }
 
-
 // fonction verification si formulaire valide
-
 
 function isValid(event) {
   event.preventDefault();
@@ -236,7 +212,6 @@ function isValid(event) {
   quantityVerif();
   verifCity();
   verifConditions();
-
 
   if (
     validFirst === true &&
