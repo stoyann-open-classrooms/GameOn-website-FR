@@ -1,4 +1,5 @@
 // DOM Elements
+
 const modalbg = document.querySelector(".bground");
 const form = document.querySelector("#formulaire");
 const modalBtn = document.querySelectorAll(".modal-btn");
@@ -15,9 +16,11 @@ const birthdate = document.querySelector("#birthdate");
 const quantity = document.querySelector("#quantity");
 const conditions = document.querySelector("#checkbox1");
 const city = document.querySelectorAll(".checkbox-label");
+let tabValue = [];
+
+
 // recuperation de la date du jour
 const todayDate = new Date().toISOString().split("T")[0];
-let tabValue = [];
 // impossible de mettre une date dans le futur
 form.birthdate.max = todayDate;
 
@@ -65,15 +68,22 @@ let validAge = false;
 // fonctions verfification des inputs
 
 function verifFirst() {
-  let regexFirst = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
+  
+  let regexFirst = /^[a-zA-Z]+[a-zA-Z -]*[a-zA-Z]$/;
   if (regexFirst.exec(first.value) === null || first.length < 2) {
+
+   
     errorAlert[0].style.display = "block";
     first.classList.add("echec");
+    first.classList.add("border");
+
     setTimeout(() => {
       first.classList.remove("echec");
     }, 500);
     return (validFirst = false);
   } else {
+    first.classList.remove("border");
+
     errorAlert[0].style.display = "none";
     tabValue.push(first.value);
     return (validFirst = true);
@@ -81,16 +91,20 @@ function verifFirst() {
 }
 
 function verifLast() {
-  let regexLast = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
+  let regexLast = /^[a-zA-Z]+[a-zA-Z -]*[a-zA-Z]$/;
   if (regexLast.exec(last.value) === null || last.length < 2) {
     errorAlert[1].style.display = "block";
     last.classList.add("echec");
+    last.classList.add("border");
+
     setTimeout(() => {
       last.classList.remove("echec");
     }, 500);
 
     return (validLast = false);
   } else {
+    last.classList.remove("border");
+
     errorAlert[1].style.display = "none";
     tabValue.push(last.value);
     return (validLast = false);
@@ -101,6 +115,8 @@ function verifMail() {
   let regexMail = /^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i;
   if (regexMail.exec(email.value) === null) {
     errorAlert[2].style.display = "block";
+    email.classList.add("border");
+
     email.classList.add("echec");
     setTimeout(() => {
       email.classList.remove("echec");
@@ -108,6 +124,8 @@ function verifMail() {
 
     return (validMail = false);
   } else {
+    email.classList.remove("border");
+
     errorAlert[2].style.display = "none";
     tabValue.push(email.value);
     return (validMail = true);
@@ -121,6 +139,8 @@ function verifDate() {
   if (regexDate.exec(birthdate.value) === null || !birthdate.value|| userYear > currentYear - 18) {
     
     errorAlert[3].style.display = "block";
+    birthdate.classList.add("border");
+    
 
     birthdate.classList.add("echec");
     setTimeout(() => {
@@ -128,6 +148,8 @@ function verifDate() {
     }, 500);
     return (validDate = false);
   } else {
+    birthdate.classList.remove("border");
+
     errorAlert[3].style.display = "none";
     tabValue.push(birthdate.value);
     return (validDate = true);
@@ -140,33 +162,38 @@ function verifDate() {
 
 function quantityVerif() {
   if (!quantity.value || isNaN(quantity.value)) {
+   
     errorAlert[4].style.display = "block";
+    quantity.classList.add("border");
+
     quantity.classList.add("echec");
     setTimeout(() => {
       quantity.classList.remove("echec");
     }, 500);
     return (validQuantity = false);
   } else {
+    quantity.classList.remove("border");
+
     errorAlert[4].style.display = "none";
     tabValue.push(quantity.value);
     return (validQuantity = true);
   }
 }
 
-function cityVerif() {
-  city.forEach(function (element) {
-    if (!element.checked) {
-      errorAlert[5].style.display = "block";
-      validCity = false;
-    } else if (element.checked) {
-      errorAlert[5].style.display = "none";
-      tabValue.push(element.value);
-      validCity = true;
-    } else {
-      validCity = false;
-    }
-  });
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function verifConditions() {
   if (!conditions.checked) {
@@ -191,16 +218,16 @@ function isValid(event) {
   verifMail();
   verifDate();
   quantityVerif();
-  cityVerif();
+  // cityVerif();
   verifConditions();
-  AgeVerif();
+
 
   if (
     validFirst === true &&
     validMail === true &&
     validDate === true &&
     validQuantity === true &&
-    validCity === true &&
+    // validCity === true &&
     validConditions === true
   ) {
     console.log(tabValue);
