@@ -15,7 +15,7 @@ const email = document.querySelector("#email");
 const birthdate = document.querySelector("#birthdate");
 const quantity = document.querySelector("#quantity");
 const conditions = document.querySelector("#checkbox1");
-const city = document.querySelectorAll(".checkbox-label");
+const citys = document.querySelectorAll(".checkbox-input");
 let tabValue = [];
 
 
@@ -69,10 +69,10 @@ let validAge = false;
 
 function verifFirst() {
   
-  let regexFirst = /^[a-zA-Z]+[a-zA-Z -]*[a-zA-Z]$/;
+  
+  let regexFirst =  /^[a-zA-ZÀ-Ÿà-ÿ-\s]+$/; //uniquement des lettres majuscules ou minuscules les tirets et les espaces
   if (regexFirst.exec(first.value) === null || first.length < 2) {
 
-   
     errorAlert[0].style.display = "block";
     first.classList.add("echec");
     first.classList.add("border");
@@ -91,7 +91,7 @@ function verifFirst() {
 }
 
 function verifLast() {
-  let regexLast = /^[a-zA-Z]+[a-zA-Z -]*[a-zA-Z]$/;
+  let regexLast =  /^[a-zA-ZÀ-Ÿà-ÿ-\s]+$/;
   if (regexLast.exec(last.value) === null || last.length < 2) {
     errorAlert[1].style.display = "block";
     last.classList.add("echec");
@@ -183,6 +183,22 @@ function quantityVerif() {
 
 
 
+function verifCity() {
+
+  if(!(citys[0].checked || citys[1].checked || citys[2].checked || citys[3].checked || citys[4].checked || citys[5].checked)) { 
+
+    errorAlert[5].style.display = "block";
+    return (validCity = false);
+    
+  } else {
+    
+    errorAlert[5].style.display = "none";
+    return (validCity = true);
+
+  }
+
+
+}
 
 
 
@@ -218,7 +234,7 @@ function isValid(event) {
   verifMail();
   verifDate();
   quantityVerif();
-  // cityVerif();
+  verifCity();
   verifConditions();
 
 
@@ -227,7 +243,7 @@ function isValid(event) {
     validMail === true &&
     validDate === true &&
     validQuantity === true &&
-    // validCity === true &&
+    validCity === true &&
     validConditions === true
   ) {
     console.log(tabValue);

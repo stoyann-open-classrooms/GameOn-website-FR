@@ -193,7 +193,7 @@ label {
   font-size: 17px;
   font-weight: normal;
   display: inline-block;
-  margin-bottom: 11px;
+  margin-bottom: 15px;
 }
 input {
   padding: 8px;
@@ -237,7 +237,9 @@ input {
   font-size: 0.6em;
   color: red;
   display: none;
-  margin-top: 2px;
+  margin-top: 5px;
+  
+
 
 }
 .checkbox-label,
@@ -512,6 +514,7 @@ input {
   height: 100%;
   display: block;
   padding: 0;
+  object-fit: cover;
 }
 .copyrights {
   color: #fe142f;
