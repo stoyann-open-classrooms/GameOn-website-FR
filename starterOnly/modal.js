@@ -116,7 +116,9 @@ function verifMail() {
 
 function verifDate() {
   let regexDate = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
-  if (regexDate.exec(birthdate.value) === null || !birthdate.value) {
+  const currentYear = new Date().getFullYear();
+  const userYear = birthdate.value.split("-")[0];
+  if (regexDate.exec(birthdate.value) === null || !birthdate.value|| userYear > currentYear - 18) {
     
     errorAlert[3].style.display = "block";
 
@@ -132,26 +134,6 @@ function verifDate() {
   }
 }
 
-// verifie que l'utilisateur est majeur
-
-
-function AgeVerif() {
-  // recuperation de l'annee
-  const currentYear = new Date().getFullYear();
-  const userYear = birthdate.value.split("-")[0];
-  if (userYear > currentYear - 18) {
-    errorAlert[3].style.display = "block";
-    birthdate.classList.add("echec");
-    setTimeout(() => {
-      birthdate.classList.remove("echec");
-    }, 500);
-    return (validAge = false);
-  } else {
-    errorAlert[3].style.display = "none";
-    tabValue.push(birthdate.value);
-    return (validAge = true);
-  }
-}
 
 
 
