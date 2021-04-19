@@ -1,4 +1,4 @@
-// DOM Elements
+// DOM Elements 
 
 const modalbg = document.querySelector(".bground");
 const form = document.querySelector("#formulaire");
@@ -32,7 +32,8 @@ function editNav() {
   } else {
     x.className = "topnav";
   }
-}
+};
+
 // animation naviguation
 iconeBurger.addEventListener("click", editNav);
 
@@ -85,7 +86,7 @@ function verifFirst() {
 
 function verifLast() {
   let regexLast = /^[a-zA-ZÀ-Ÿà-ÿ-\s]+$/;
-  if (regexLast.exec(last.value) === null || last.length < 2) {
+  if (regexLast.exec(last.value) === null || last.lenght < 2) {
     errorAlert[1].style.display = "block";
     last.classList.add("echec");
     last.classList.add("border");
@@ -185,6 +186,7 @@ function verifCity() {
     return (validCity = false);
   } else {
     errorAlert[5].style.display = "none";
+
     return (validCity = true);
   }
 }
@@ -196,10 +198,19 @@ function verifConditions() {
     return (validConditions = false);
   } else {
     errorAlert[6].style.display = "none";
+    tabValue.push("CGU-OK");
     return (validConditions = true);
   }
 }
 
+function newsLetter() {
+  const letter = document.querySelector("#checkbox2");
+  if (letter.checked) {
+    tabValue.push("mailling-list = true");
+  } else {
+    tabValue.push("mailling-list = false");
+  }
+};
 // fonction verification si formulaire valide
 
 function isValid(event) {
@@ -212,16 +223,25 @@ function isValid(event) {
   quantityVerif();
   verifCity();
   verifConditions();
+  newsLetter();
 
   if (
+   
     validFirst === true &&
     validMail === true &&
     validDate === true &&
     validQuantity === true &&
     validCity === true &&
     validConditions === true
-  ) {
-    console.log(tabValue);
+  ) 
+  
+  // retour des valeurs entrée par l'utilisatteur dans un tableaux clefs valeurs 
+  {
+    let datas = new FormData(form);
+    for (let i of datas.entries()) {
+      console.log(i[0], ":", i[1]);
+    }
+
     validationOk.style.display = "flex";
   }
 }

@@ -15,7 +15,7 @@
 body {
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
+  /* background-image: url("background.png"); */
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -85,6 +85,8 @@ img {
 }
 
 @media screen and (max-width: 768px) {
+
+
   .topnav.responsive {
     position: relative;
   }
@@ -527,7 +529,7 @@ input {
 }
 
 .hero-headline {
-  font-size: 6rem;
+  font-size: 5rem;
   font-weight: normal;
   white-space: nowrap;
 }
