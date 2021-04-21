@@ -84,8 +84,6 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-
-
   .topnav.responsive {
     position: relative;
   }
@@ -102,8 +100,6 @@ img {
     text-align: left;
   }
 }
-
-
 
 @media screen and (max-width: 540px) {
   .topnav a {
@@ -127,8 +123,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -403,9 +397,6 @@ input {
   background-color: #3876ac;
 }
 
-
-
-
 /* Style the arrow inside the select element: */
 .select-selected:after {
   position: absolute;
@@ -556,7 +547,11 @@ footer {
     display: block;
     box-shadow: unset;
   }
-
+ 
+ 
+ 
+ 
+ 
   .hero-content {
     background: #fff;
     color: #000;
@@ -597,57 +592,67 @@ footer {
     text-align: center;
   }
 }
+
 @media screen and (max-width: 500px) {
 
   .hero-headline {
-     width: 3%; 
+
+    width: 3%;
     font-size: 3.5rem;
-    
-  }
 
-  .hero-text{
+  }
+  img {
+    width: 80%;
+    height: auto;
+   }
+   .main-navbar{
+     margin-top: 15px;
+   }
+
+  .hero-text {
     width: 60%;
-    
-
-}
-@keyframes modalopen {
-  from {
-    opacity: 0;
-    transform: translateY(-150px);
   }
 
-  to {
-    opacity: 1;
+  @keyframes modalopen {
+    from {
+      opacity: 0;
+      transform: translateY(-150px);
+    }
+
+    to {
+      opacity: 1;
+    }
   }
-}
+  @media screen and (max-width: 330px) {
 
-
-
-/* animation des inputs */
-.border {
-  border: 2px solid #e54858;
-}
-
-.echec {
-
-  animation: echec 0.3s ease-in-out;
-}
-
-@keyframes echec {
- 
-  0% {
-    transform: translateX(0px);
+    .main-navbar {
+      position: absolute;
+      margin-left: 240px;
+    }
   }
-
-  33% {
-    transform: translateX(5px);
+  /* animation des inputs */
+  .border {
+    border: 2px solid #e54858;
   }
 
-  66% {
-    transform: translateX(-5px);
+  .echec {
+    animation: echec 0.3s ease-in-out;
   }
 
-  100% {
-    transform: translateX(0px);
+  @keyframes echec {
+    0% {
+      transform: translateX(0px);
+    }
+
+    33% {
+      transform: translateX(5px);
+    }
+
+    66% {
+      transform: translateX(-5px);
+    }
+
+    100% {
+      transform: translateX(0px);
+    }
   }
-}

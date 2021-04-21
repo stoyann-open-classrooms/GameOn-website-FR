@@ -35,7 +35,7 @@ function editNav() {
 };
 
 // animation naviguation
-iconeBurger.addEventListener("click",+);
+iconeBurger.addEventListener("click", editNav);
 
 // function  launch & close modal  form
 function launchModal() {
