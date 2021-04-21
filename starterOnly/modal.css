@@ -623,13 +623,13 @@ footer {
       opacity: 1;
     }
   }
-  @media screen and (max-width: 330px) {
+  /* @media screen and (max-width: 330px) { */
 
-    .main-navbar {
-      position: absolute;
-      margin-left: 240px;
-    }
-  }
+    /* .main-navbar { */
+      /* position: absolute; */
+      /* margin-left: 240px; */
+    /* } */
+  /* } */
   /* animation des inputs */
   .border {
     border: 2px solid #e54858;
