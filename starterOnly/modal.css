@@ -15,7 +15,6 @@
 body {
   display: flex;
   flex-direction: column;
-  /* background-image: url("background.png"); */
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -598,7 +597,19 @@ footer {
     text-align: center;
   }
 }
+@media screen and (max-width: 500px) {
 
+  .hero-headline {
+     width: 3%; 
+    font-size: 3.5rem;
+    
+  }
+
+  .hero-text{
+    width: 60%;
+    
+
+}
 @keyframes modalopen {
   from {
     opacity: 0;
@@ -623,6 +634,7 @@ footer {
 }
 
 @keyframes echec {
+ 
   0% {
     transform: translateX(0px);
   }
